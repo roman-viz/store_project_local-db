@@ -1,4 +1,4 @@
-import { React, useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import "./Menu.scss";
 import { NavLink } from 'react-router-dom';
 import { DataContext } from '../../App';
@@ -6,25 +6,15 @@ import { DataContext } from '../../App';
 export default function Menu({ menuStatus, menuLinks, menuSubLinks }) {
 
     let { setFilterLink, handleMenuVisibility } = useContext(DataContext);
+    const [expandedMenu, setExpandedMenu] = useState(null);
 
     const handleLink = (e) => {
         handleMenuVisibility();
         setFilterLink(e.target.name.toLowerCase())
     }
 
-    const handleSubMenu = (e) => {
-        if (e.currentTarget.classList.contains('activeSub')) {
-            e.currentTarget.classList.remove('activeSub')
-        } else {
-            let links = Array.from(e.currentTarget.parentNode.children).filter(el => el !== e.target);
-            links.forEach(el => el.classList.remove('activeSub'));
-            if (e.target.classList.contains('subName')) {
-                e.currentTarget.classList.toggle('activeSub')
-            }
-            if (e.target.tagName === 'A') {
-                e.currentTarget.classList.remove('activeSub')
-            }
-        }
+    const handleSubMenu = (link) => {
+        setExpandedMenu(current => current === link ? null : link);
     }
 
     return (
@@ -39,7 +29,17 @@ export default function Menu({ menuStatus, menuLinks, menuSubLinks }) {
                     <li onClick={handleMenuVisibility}><NavLink to="/">Главная</NavLink></li>
                     <li onClick={handleMenuVisibility}><NavLink to="/catalog">Каталог</NavLink></li>
                     {menuLinks.map((link, i) => {
-                        return <li onClick={handleSubMenu} className='' key={i}><div className="subName">{link}</div>
+                        const isExpanded = expandedMenu === link;
+                        return <li className={isExpanded ? 'activeSub' : ''} key={i}>
+                            <button
+                                type="button"
+                                className="subName"
+                                onClick={() => handleSubMenu(link)}
+                                aria-expanded={isExpanded}
+                            >
+                                {link}
+                                <span className="menu-chevron" aria-hidden="true"></span>
+                            </button>
                             <div className='lunges'>
                                 {menuSubLinks.map((subLink, ind) => {
                                     if (subLink[link] !== undefined) {

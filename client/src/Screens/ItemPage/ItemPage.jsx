@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import './ItemPage.scss';
-import { useEffect, useState, React, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { DataContext } from '../../App';
 import Review from '../../Components/Review/Review';

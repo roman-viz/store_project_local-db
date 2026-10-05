@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import './Cart.scss';
-import { React, useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import Modal from '../../Components/Modal/Modal';
 import InputNumber from '../../Components/InputNumber/InputNumber';
 import PopUp from '../../Components/PopUp/PopUp';

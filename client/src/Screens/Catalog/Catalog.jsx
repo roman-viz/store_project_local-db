@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import FilterSelect from '../../Components/FilterSelect/FilterSelect';
 import "./Catalog.scss";
-import { React, useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { DataContext } from '../../App';
 import { Link } from 'react-router-dom';
 import PaginatedItems from '../../Components/PaginatedItems/PaginatedItems';

@@ -1,15 +1,34 @@
 .slider {
     position: relative;
+    isolation: isolate;
+    overflow: hidden;
     height: 600px;
     width: 100%;
     margin: 0;
     padding: 0;
 
+    &:focus-visible {
+        outline: 2px solid rgba(227, 76, 69, 0.75);
+        outline-offset: -4px;
+    }
+
     .slide {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
         height: 100%;
         width: 100%;
         margin: 0;
         padding: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 1000ms ease-in-out;
+
+        &.slide-active {
+            z-index: 1;
+            opacity: 1;
+            pointer-events: auto;
+        }
 
         .item {
             margin: 0;
@@ -126,6 +145,10 @@
     border-radius: 50%;
     cursor: pointer;
     background: rgba(0, 0, 0, 0.5);
+    border: 0;
+    padding: 0;
+    color: inherit;
+    appearance: none;
     backdrop-filter: blur(8px);
     -webkit-tap-highlight-color: transparent;
 
@@ -185,6 +208,8 @@
 
 .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
     position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 5;
     height: 30px;
     width: auto;
@@ -198,6 +223,8 @@
     -webkit-tap-highlight-color: transparent;
 
     .swiper-pagination-bullet {
+        appearance: none;
+        padding: 0;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -213,6 +240,7 @@
         font-size: 15px;
         line-height: 18px;
         cursor: pointer;
+        font-family: inherit;
     }
 
     .swiper-pagination-bullet-active {

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import App from './App.jsx';
+import './Premium.scss';
 import { BrowserRouter } from 'react-router-dom';
 
 
@@ -11,5 +12,4 @@ root.render(
         <App />
     </BrowserRouter>
 );
-
 

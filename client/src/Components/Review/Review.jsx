@@ -1,5 +1,5 @@
 import './Review.scss';
-import { React, useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { DataContext } from '../../App';
 import PopUp from '../PopUp/PopUp';
 

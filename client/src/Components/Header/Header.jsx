@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./Header.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { React, useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { DataContext } from '../../App';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -75,10 +75,9 @@ function Header() {
                 <Link to="/"><img src="/assets/img/logo.png" alt="" /></Link>
             </div>
             <div className="right">
-                <div className="cart">
-                    <Link to="/cart" className="totalCartItems">{totalCartItems}</Link>
-                    <Link to="/cart">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <Link to="/cart" className="cart" aria-label={`Корзина, товаров: ${totalCartItems}`}>
+                    <span className="totalCartItems">{totalCartItems}</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11.9681 2C12.3023 2.06645 12.6486 2.11245 12.9767 2.20446C14.8663 2.75139 16.0632 
                             4.0855 16.1908 5.76719C16.1908 5.79786 16.203 5.82853 16.2091 5.88987C16.2941 5.88987 16.3792
                              5.88987 16.4582 5.88987C17.2602 5.88987 18.0683 5.88987 18.8703 5.88987C19.3685 5.88987 19.6116
@@ -109,9 +108,8 @@ function Header() {
                                              4.81134 14.2526 3.99349 13.159 3.47723C11.9742 2.92007 10.7772 2.96097 9.64106 3.58457C8.675
                                               4.11617 8.18285 4.89823 8.1221 5.87964C10.3884 5.87964 12.6304 5.87964 14.8906 5.87964Z"
                                 fill="white" />
-                        </svg>
-                    </Link>
-                </div>
+                    </svg>
+                </Link>
                 <div className="search">
                     <Autocomplete
                         className="search"

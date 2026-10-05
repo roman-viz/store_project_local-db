@@ -50,7 +50,6 @@ export default function Footer() {
                     <h2>Мы в соцсетях</h2>
                     <div className="icons">
                         <Link to="/fb" href="."><img src="/assets/icons/social/facebook.svg" alt="" /></Link>
-                        <Link to="/vk" href="."><img src="/assets/icons/social/vk.svg" alt="" /></Link>
                         <Link to="/insta" href="."><img src="/assets/icons/social/instagramm.svg" alt="" /></Link>
                         <Link to="/youtube" href="."><img src="/assets/icons/social/youtube.svg" alt="" /></Link>
                     </div>

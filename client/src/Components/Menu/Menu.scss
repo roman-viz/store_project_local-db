@@ -286,7 +286,7 @@
     }
 }
 
-.active {
+.Menu.active {
     transform: translateX(0) !important;
 
     .Menu__wrapper {
@@ -294,16 +294,10 @@
     }
 }
 
-.activeSub {
+.Menu__content .filterLinks li.activeSub {
     height: auto !important;
 
     .lunges {
-        height: 100% !important;
-
-        &:before {
-            transition: transform 0.3s;
-            font-size: 1rem !important;
-            transform: rotate(90deg);
-        }
+        height: auto !important;
     }
 }

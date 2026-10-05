@@ -1,13 +1,9 @@
 import './Review.scss';
-import React, { useEffect, useState, useContext } from 'react';
-import { DataContext } from '../../App';
+import React, { useEffect, useState } from 'react';
 import PopUp from '../PopUp/PopUp';
 
-export default function Review({ data: revDB, currentItemID }) {
-
-    const { setData } = useContext(DataContext);
+export default function Review({ data: revDB }) {
     const [reviews, setReviews] = useState([]);
-    const [newReview, setNewReview] = useState({});
     const [reviewInputValue, setReviewInputValue] = useState({
         name: '',
         message: '',
@@ -23,45 +19,12 @@ export default function Review({ data: revDB, currentItemID }) {
             [e.target.name]: e.target.value,
         })
         setPopUp(false)
-        let date = new Date();
-        setNewReview({
-            ...newReview,
-            [e.target.name]: e.target.value,
-            date: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
-            time: `${date.getHours()}:${date.getMinutes()}`,
-            rating: rating
-        });
     }
 
     const [popUp, setPopUp] = useState(false);
 
     const addNewReview = () => {
         setPopUp(true)
-        return
-        setReviewInputValue({
-            name: '',
-            message: '',
-        })
-        setPopUp(false)
-        if (!newReview.name || !newReview.message) {
-            setPopUp(true)
-            return
-        }
-        let request = {
-            review: newReview,
-            id: currentItemID
-        }
-        fetch('http://localhost:3001/updateItemReviews', { // sending new REVIEW to server ~~~~~~~~~~~~~~~
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-            body: JSON.stringify(request)
-        })
-            .then(res => res.json())
-            .then(db => {
-                setData(db) // update data with new REVIEWS ~~~~~~~~~~~
-            });
     }
 
     // RATING ~~~~~~~~~~~~~~~~
@@ -72,10 +35,6 @@ export default function Review({ data: revDB, currentItemID }) {
 
     const handleRating = value => {
         setRating(value)
-        setNewReview({
-            ...newReview,
-            rating: value
-        })
     }
 
     const handleRatingOnOver = newHoverValue => {
